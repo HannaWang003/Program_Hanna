@@ -8,6 +8,8 @@
 </head>
 
 <body>
+    <a href="./index.html">連結到index.html檔</a>
+    <hr>
     <?php
 $age = 30;
 echo $age;
