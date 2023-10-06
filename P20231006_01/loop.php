@@ -1,4 +1,7 @@
 <?php
+$hr="<hr align='left' color='#DABABB' size='5'>";
+?>
+<?php
 $sum=0;
 for($i=0;$i<=100;$i=$i+1){
     $sum=$sum+$i;
@@ -43,8 +46,9 @@ if($flag){
 else{
     echo $a."不是質數";
 }
+print $hr;
 ?>
-<hr style="width:50%;">
+<!-- <hr align="left" color="#DABABB" size="5"> -->
 <?php
 $n=100;
 $count=0;
@@ -65,4 +69,5 @@ for($j=3;$j<=$n;$j++){
    }   
 }
 echo "程式共執行了".$count."次";
+print $hr;
 ?>
