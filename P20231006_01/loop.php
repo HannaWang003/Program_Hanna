@@ -1,5 +1,7 @@
 <?php
+// 常用html
 $hr="<hr align='left' color='#DABABB' size='5'>";
+$hr1="<hr align='left' color='#DABABB' style='width=50%'>";
 ?>
 <?php
 $sum=0;
@@ -70,4 +72,21 @@ for($j=3;$j<=$n;$j++){
 }
 echo "程式共執行了".$count."次";
 print $hr;
+?>
+<h3>陣列</h3>
+<?php
+echo "<h2>for(){}</h2>";
+$a=['甲','乙','丙','丁'];
+for($i=0;$i<count($a);$i++){
+    echo $a[$i];
+}
+echo $i;
+echo $hr1;
+echo "<h2>foreach(){}</h2>";
+foreach($a as $val){
+    echo $val;
+}
+foreach($a as $key => $val){
+    echo $key."=>".$val;
+}
 ?>

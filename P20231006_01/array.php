@@ -1,8 +1,10 @@
 <?php
+// 常用html
 $hr="<hr align='left' color='#DABABB' size='5'>";
 $br="<br>";
 $nbsp="&nbsp";
 ?>
+
 <?php
 // $a=array();
 $a=[];
@@ -15,7 +17,7 @@ print_r($a);
 echo "</pre>";
 echo $a[0];
 echo $a[1+1];
-echo $hr;
+print $hr;
 
 $b=[];
 $b["姓名"]="HannaWang";
@@ -26,7 +28,7 @@ echo "<pre>";
 print_r($b);
 echo "</pre>";
 echo $b['姓名']."&nbsp&nbsp".$b['tel'];
-echo $hr;
+print $hr;
 
 $c=[];
 $c['姓名']="HannaWang";
@@ -35,4 +37,7 @@ echo "<pre>";
 print_r($c);
 echo "</pre>";
 echo $c['姓名']."的興趣是:".$br.$c['興趣'][0].$br.$c['興趣'][1].$br.$c['興趣'][2];
+print $hr;
+
+
 ?>
