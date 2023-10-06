@@ -2,6 +2,7 @@
 // 常用html
 $hr="<hr align='left' color='#DABABB' size='5'>";
 $hr1="<hr align='left' color='#DABABB' style='width=50%'>";
+$br="<br>";
 ?>
 <?php
 $sum=0;
@@ -84,9 +85,11 @@ echo $i;
 echo $hr1;
 echo "<h2>foreach(){}</h2>";
 foreach($a as $val){
-    echo $val;
+    echo $val.$br;
 }
+print $br;
 foreach($a as $key => $val){
-    echo $key."=>".$val;
+    echo $key."=>".$val.",&nbsp";
 }
+print $br;
 ?>
