@@ -161,7 +161,7 @@ for($i;$i<=$n;$i++){
     elseif(($j==0)){
         echo  "$i";
     }
-    elseif($i<=$j){
+    elseif($i>=$j){
 
         echo $j*$i;
     }
