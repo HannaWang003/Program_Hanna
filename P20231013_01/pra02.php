@@ -43,11 +43,6 @@ nav>a {
     text-decoration: underline overline;
 }
 
-table,
-tr,
-td {
-    /* border: 1px solid black; */
-}
 
 .container>h2 {
     text-align: center;
