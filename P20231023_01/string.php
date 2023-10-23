@@ -43,7 +43,7 @@ echo mb_substr($a, 5, 3);
     <li>請將上句中的 “程式設計” 放大字型或變色.</li>
 </ol>
 <?php
-$a="學會PHP網頁程式設計，薪水會加倍，工作會好找";
+$a="學會PHP網頁程式設計，薪水會加倍，工作會好找程式設計";
 $focus="程式設計";
 echo mb_strlen($focus)."<br>";
 echo str_replace($focus,"<span style='font-size:2rem;color:green'>".$focus."</span>",$a);
@@ -55,8 +55,26 @@ for($i=0;$i<strlen($a);$i+=3){
     echo $a[$i];
     echo $a[$i+1];
     echo $a[$i+2];
-    echo "<br>";
+    // echo "<br>";
 }
+?>
+<br>
+<hr><br>
+<h2>測試</h2>
 
 
+<?php
+$s= "在程式設計這程式設計段文程式設計章中，有重複出現多個「程式設計」的字串，如果只要讓第三個「程式設計」的字串變成紅色，該怎麼寫？";
+$n=5;
+$a=explode("程式設計",$s);
+echo "<pre>";
+print_r($a);
+echo "</pre>";
+// echo $a[2];
+$a[$n-1]=$a[$n-1]."<span style='color:red;'>";
+$a[$n]="</span>".$a[$n];
+echo "<pre>";
+print_r($a);
+echo "</pre>";
+echo join("程式設計",$a);
 ?>
