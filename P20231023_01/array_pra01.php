@@ -172,7 +172,7 @@ echo "</pre>";;
 $num=count($a);
 for($i=0;$i<floor($num/2);$i++){
     $tmp=$a[$i];
-    $a[$i]=$a[count($a)-1-$i];
+    $a[$i]=$a[$num-1-$i];
     $a[count($a)-1-$i]=$tmp;
 }
 echo "<pre>";
