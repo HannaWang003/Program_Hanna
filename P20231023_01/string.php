@@ -66,7 +66,8 @@ for($i=0;$i<strlen($a);$i+=3){
 <?php
 $s= "在程式設計這程式設計段文程式設計章中，有重複出現多個「程式設計」的字串，如果只要讓第三個「程式設計」的字串變成紅色，該怎麼寫？";
 $n=5;
-$a=explode("程式設計",$s);
+$str="設計";
+$a=explode($str,$s);
 echo "<pre>";
 print_r($a);
 echo "</pre>";
@@ -76,5 +77,5 @@ $a[$n]="</span>".$a[$n];
 echo "<pre>";
 print_r($a);
 echo "</pre>";
-echo join("程式設計",$a);
+echo join($str,$a);
 ?>
