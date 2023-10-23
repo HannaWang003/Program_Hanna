@@ -133,4 +133,49 @@ foreach($lotte as $n){
 echo "<br>";
 echo count($lotte);
 print_r($lotte);
+echo "<br><hr><br>";
+
+echo "<h1>找出500年內的閏年</h1>";
+$years=[];
+for($year=2023;$year<=2523;$year++){
+if(($year%4==0 && $year%100 != 0) || $year%400==0){
+    // echo $year."是閏年";
+    $years[]=$year;
+}
+}
+echo "<pre>";
+print_r($years);
+echo "</pre>";
+foreach($years as $num){
+    echo $num."<br>";
+}
+echo "共".count($years)."年";
+echo "<br><hr><br>";
+
+echo "<h1>設計一個可以用西元判斷對應的天干地支</h1>";
+// https://mackliu.github.io/php-book/2021/09/19/basic-lesson-03/
+
+$year= 2020;
+$sky=[ '甲',    '乙',    '丙',    '丁',    '戊',    '己',    '庚',    '辛',    '壬',    '癸',    ];
+$land=[ '子',    '丑',    '寅',    '卯',    '辰',    '巳',    '午',    '未',    '申',    '酉',    '戌',    '亥',];
+echo "西元".$year."是";
+echo $sky[($year-1024)%10];
+echo $land[($year-1024)%12];
+echo "年";
+echo "<br><hr><br>";
+
+echo "<h1>反轉陣列內的值,以不增加新的陣列方式</h1>";
+$a=[2,4,6,1,8,27,18,33];
+echo "<pre>";
+print_r($a);
+echo "</pre>";;
+$num=count($a);
+for($i=0;$i<floor($num/2);$i++){
+    $tmp=$a[$i];
+    $a[$i]=$a[count($a)-1-$i];
+    $a[count($a)-1-$i]=$tmp;
+}
+echo "<pre>";
+print_r($a);
+echo "</pre>";
 ?>
