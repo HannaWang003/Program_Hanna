@@ -102,4 +102,35 @@ foreach($nine as $key => $val){
 }
 echo "</tr>";
 echo "</table>";
+echo "<br><hr><br>";
+
+echo "<h1>利用for迴圈-威力彩電腦選號沒有重覆號碼</h1>";
+// in_array();
+$lotte=[];
+for($i=1;$i<=6;$i++){
+    $num=rand(1,38);
+if(!in_array($num,$lotte)){
+    $lotte[]=$num;
+}
+else{
+    $i--;
+}
+ 
+}
+print_r($lotte);
+echo "<br><hr><br>";
+
+echo "<h1>利用while迴圈-威力彩電腦選號沒有重覆號碼</h1>";
+while(count($lotte) < 6){
+    $num = rand(1,38);
+    if(!in_array($num,$lotte)){
+        $lotte[]=$num;
+    }
+}
+foreach($lotte as $n){
+    echo "$n,";
+}
+echo "<br>";
+echo count($lotte);
+print_r($lotte);
 ?>
