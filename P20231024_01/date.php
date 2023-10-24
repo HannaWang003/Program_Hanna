@@ -121,7 +121,7 @@ th:nth-last-child(1) {
     background-color: orange;
 }
 </style>
-<h2>線上月曆製作</h2>
+<h2>線上月曆製作(禮拜日是第一天)</h2>
 <!-- 最多可能到6行 -->
 <!-- 每週最多7天 -->
 <h3>西元2023年10月</h3>
@@ -171,6 +171,34 @@ for($i=0;$i<7;$i++){
     echo "</td>";
 }
 echo "</tr>";
+}
+echo "</table>";
+?>
+<br><hr>
+<h2>線上月曆製作(禮拜一是第一天)</h2>
+<?php
+$MFirstDt=strtotime(date("Y-m-1"));
+$MFirstDw=date("N",$MFirstDt);
+$MDays=date("t");
+$MDays=date("t");
+// ($MFirstDw-1)表示前面有幾格
+$tmpw=$MFirstDw-1;
+$tmp=$MDays+$tmpw;
+$Mweeks=ceil($tmp/7);
+// 把前面格數填滿的上個月日期的第一格日期的秒數
+$MFirstCellDatet=strtotime("-$tmpw days",$MFirstDt);
+echo $MFirstCellDate=date("Y-m-d",$MFirstCellDatet);
+echo "<table>";
+for($j=0;$j<$Mweeks;$j++){
+    echo "<tr>";
+    for($i=0;$i<7;$i++){
+        echo "<td>";
+        $tmp=(7*$j)+$i;
+        $dateSt=strtotime("$tmp days",$MFirstCellDatet);
+        echo $dateS=date("m-d",$dateSt);
+        echo "</td>";
+    }
+    echo "</tr>";
 }
 echo "</table>";
 ?>
