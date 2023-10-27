@@ -1,7 +1,8 @@
 <?php
-if(!empty($_GET['weight'] || !empty($_GET['height']))){ 
-    $weight=(!empty($_GET['weight']))?$_GET['weight']:'沒有體重資料';
-    $height=(!empty($_GET['height']))?$_GET['height']:'沒有身高資料';
+if(!empty($_GET)){
+if(!empty($_GET['weight'] && !empty($_GET['height']))){ 
+    $weight=$_GET['weight'];
+    $height=$_GET['height'];
 
     $bmi=round($weight/($height*$height),2);
 // echo "<br>";
@@ -13,10 +14,11 @@ if(!empty($_GET['weight'] || !empty($_GET['height']))){
 header("location:bmi.php?w=$weight&h=$height&bmi=$bmi");
 
 
-}else{  
+}
+else{  
 
     header("location:bmi.php?m=請輸入必要的資訊");
 
 }
-
+}
 ?>
