@@ -1,109 +1,93 @@
-<style>
-* {
-    box-sizing: border-box;
-    border-collapse: collapse;
-}
-
-table,
-tr,
-th,
-td {
-    border: 1px solid black;
-}
-
-table {
-    margin: auto;
-    width: 50vw;
-    border: 5px double black;
-}
-
-td {
-    height: 8vh;
-    width: 2vw;
-    text-align: center;
-    padding: 5px;
-    color: black;
-}
-
-td:nth-child(1),
-td:nth-last-child(1),
-th:nth-child(1),
-th:nth-last-child(1) {
-    background-color: orange;
-}
-
-.container {
-    margin: auto;
-    width: 50vw;
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 2vh;
-}
-
-.container>a {
-    text-decoration: none;
-}
-
-h3 {
-
-    text-align: center;
-}
-</style>
-<h2>線上月曆製作(禮拜日是第一天)</h2>
-
-<?php
-
-if(isset($_GET['month'])){
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>萬年曆</title>
+    <style>
+        *{
+            box-sizing:border-box;
+        }
+        h1{
+            text-align:center;
+        }
+        h2{
+            text-align:center;
+        }
+        table,tr,th,td{
+            border:2px solid black;
+            border-collapse:collapse;
+        }
+        table{
+            margin:auto;
+            width:50vw;
+        }
+        td{
+            text-align:center;
+        }
+        .bg-c1{
+            background-color:blanchedalmond;
+        }
+        .PreNext{
+            margin:auto;
+            width:50vw;
+            background-color:lightgreen;
+            display:flex;
+            justify-content: space-evenly;
+        }
+    </style>
+</head>
+<body>
+    <h1>萬年曆</h1>
+    <?php
+    // 變數
+    $row=$_GET['r'];
+    $FC=$_GET['FC'];
     $month=$_GET['month'];
-}
-else{
-    $month=date('m');
-}
-echo "<h3>西元2023年".$month."月</h3>";
-$isFirstDt=strtotime(date("Y-{$month}-1"));
-$isFirstDay=date("Y-{$month}-1");
-$isFirstDw=date('w',$isFirstDt);
-$isLastDays=date('t');
-$isLastDay=date("Y-{$month}-$isLastDays");
-$weeks=ceil(($isLastDays+$isFirstDw)/7);
-$isFirstCellt=strtotime("-$isFirstDw days",$isFirstDt);
-$isFisrtCell=date("Y-m-d",$isFirstCellt);
-
-$prev=$month-1;
-$next=$month+1;
-?>
-
-<div class="container">
-    <a href="?month=<?=$prev?>">上一個月</a>
-    <a href="?month=<?=$next?>">下一個月</a>
-</div>
-<table>
-    <tr>
-        <th>日</th>
-        <th>一</th>
-        <th>二</th>
-        <th>三</th>
-        <th>四</th>
-        <th>五</th>
-        <th>六</th>
-    </tr>
-    <tr>
-        <?php
-for($j=0;$j<$weeks;$j++){
-echo "<tr>";
-for($i=0;$i<7;$i++){
-    echo "<td>";
-    $date=7*$j+$i;
-    $isCellDt=strtotime("$date days",$isFirstCellt);
-    $isCellD=date("j",$isCellDt);
-    $isCellM=date("m",$isCellDt);
-    if($isCellM==date("$month") ){
-        echo $isCellD;
-    }
-
+    $year=$_GET['year'];
+    ?>
+    <h2>西元<?=$year?>年<?=$month?>月</h2>
+   <div class="container">
+    <div class="PreNext">
+        <a href="index.php?pre=<?=$month?>&year=<?=$year?>">上個月</a>
+        <a href="index.php?next=<?=$month?>&year=<?=$year?>">下個月</a>
+    </div>
+    <table>
+        <tr>
+            <th class="bg-c1">SUN</th>
+            <th>MON</th>
+            <th>TUS</th>
+            <th>WED</th>
+            <th>THR</th>
+            <th>FRI</th>
+            <th class="bg-c1">SAT</th>
+        </tr>
+    <?php
+for($j=0;$j < $row; $j++){
+    echo "<tr>";
+    for($i=0;$i<7;$i++){
+        $tmp=(7*$j)+$i;
+        $everydayTime=strtotime("$tmp days",$FC);
+        $everydayM=date("m",$everydayTime);
+        if($i==0 || $i==6){
+            echo "<td class='bg-c1'>";
+        }
+        else{
+                echo "<td>";
+        }
+if($everydayM==$month){
+    echo $everyday=date("j",$everydayTime);
     echo "</td>";
 }
-echo "</tr>";
+else{
+    echo "</td>";
 }
-echo "</table>";
+
+    }
+}
+
 ?>
+</table>
+   </div>
+</body>
+</html>
