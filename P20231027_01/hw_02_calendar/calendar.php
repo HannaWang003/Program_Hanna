@@ -45,12 +45,15 @@
             background-color:white;
             filter:drop-shadow(10px 10px black);
         }
-        .PreNext{
-            margin:auto;
+        /* .PreNext{ */
+            /* margin:auto; */
             /* width:50vw; */
-            background-color:lightgreen;
-            display:flex;
-            justify-content: space-evenly;
+            /* background-color:lightgreen; */
+            /* display:flex; */
+            /* justify-content: space-evenly; */
+        /* } */
+        .preMonth h3{
+            text-align:left;
         }
         .thisMonth{
 position:fixed;
@@ -65,6 +68,9 @@ box-shadow:10px 10px 5px black;
         .thisMonth>table td{
             height:10vh;
             width:5vw;
+        }
+        .nextMonth h3{
+            text-align: right;
         }
     </style>
 </head>
@@ -87,10 +93,15 @@ box-shadow:10px 10px 5px black;
     $year1=$_GET['year1'];
     $year2=$_GET['year2'];
     ?>
+    <!-- 上個月 -->
    <div class="containerBox">
-   <div class="container">
+   <div class="container preMonth">
    <h2>西元<?=$year1?>年<?=$month1?>月</h2>
-        <a href="index.php?pre=<?=$month?>&year=<?=$year?>">
+   <a href="index.php?pre=<?=$month?>&year=<?=$year?>">
+<h3><<&nbsp;Previous</h3>
+<div class="monthDiv">
+    
+</div>
     <table>
         <tr>
             <th class="bg-c1">SUN</th>
@@ -131,10 +142,10 @@ else{
     <!-- thisMonth -->  
    <div class="container thisMonth">
    <h2>西元<?=$year?>年<?=$month?>月</h2>
-    <div class="PreNext">
-        <a href="index.php?pre=<?=$month?>&year=<?=$year?>">上個月</a>
-        <a href="index.php?next=<?=$month?>&year=<?=$year?>">下個月</a>
-    </div>
+    <!-- <div class="PreNext"> -->
+        <!-- <a href="index.php?pre=<?=$month?>&year=<?=$year?>">上個月</a> -->
+        <!-- <a href="index.php?next=<?=$month?>&year=<?=$year?>">下個月</a> -->
+    <!-- </div> -->
     <table>
         <tr>
             <th class="bg-c1">SUN</th>
@@ -178,10 +189,11 @@ else{
 ?>
 </table>
    </div>
-   <!-- nextMonty -->
-   <div class="container">
+   <!-- nextMonth -->
+   <div class="container nextMonth">
    <h2>西元<?=$year2?>年<?=$month2?>月</h2>
         <a href="index.php?next=<?=$month?>&year=<?=$year?>">
+        <h3>NEXT&nbsp;>></h3>
     <table>
         <tr>
             <th class="bg-c1">SUN</th>
