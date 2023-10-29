@@ -7,6 +7,7 @@
     <style>
         *{
             box-sizing:border-box;
+            margin:0;
         }
         h1{
             text-align:center;
@@ -29,7 +30,7 @@
             background-color:aquamarine;
             margin:auto;
             width:80vw;
-            height:80vh;
+            height:100vh;
             display:flex;
             justify-content:space-around;
             align-items:center;

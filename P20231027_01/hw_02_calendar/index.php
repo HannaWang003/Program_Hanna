@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('Asia/Taipei');
 if(isset($_GET['month']) && isset($_GET['year'])){
     $month=$_GET['month'];
     $year=$_GET['year'];
