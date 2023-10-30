@@ -1,3 +1,6 @@
+<?php
+include_once('session.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,9 +12,9 @@
 </head>
 
 <body>
-    <?php
-    include_once('header.php');
-    session_start();
+    <?php include_once('header.php');?>
+    <div class='login-block'>
+        <?php
     if(isset($_SESSION['error'])){
         echo "<span style='color:red'>".$_SESSION['error']."</span>";
         unset($_SESSION['error']);
@@ -22,21 +25,21 @@
         echo "<a href='logout.php'>登出</a>";
     }else{
 ?>
-    <form action="check.php" method="post">
-        <div class='login-input'>
-            <label for="acc">帳號:</label>
-            <input type="text" name="acc" id="acc">
-        </div>
-        <div class='login-input'>
-            <label for="pw">密碼:</label>
-            <input type="password" name="pw" id="pw">
-        </div>
-        <div class='btn'>
-            <input type="submit" value="登入">
-            <input type="reset" value="重置">
-        </div>
-    </form>
-    <?php
+        <form action="check.php" method="post">
+            <div class='login-input'>
+                <label for="acc">帳號:</label>
+                <input type="text" name="acc" id="acc">
+            </div>
+            <div class='login-input'>
+                <label for="pw">密碼:</label>
+                <input type="password" name="pw" id="pw">
+            </div>
+            <div class='btn'>
+                <input type="submit" value="登入">
+                <input type="reset" value="重置">
+            </div>
+        </form>
+        <?php
     }
 
     ?>

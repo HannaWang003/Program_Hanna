@@ -1,5 +1,5 @@
 <?php
-session_start();
+include_once('session.php');
 
 if($_POST['acc']=='admin' && $_POST['pw']=='1234'){
 
