@@ -5,10 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>會員中心</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <?php
+    include_once('header.php');
     date_default_timezone_set("Asia/Taipei");
     // session_start();
     if(isset($_COOKIE['login']) && !empty($_COOKIE['login'])){

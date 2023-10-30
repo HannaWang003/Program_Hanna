@@ -5,44 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>會員登入</title>
-    <style>
-    .login-block {
-        padding: 30px 40px;
-        border: 1px solid #999;
-        box-shadow: 2px 2px 15px #999;
-        margin: 10px auto;
-        width: 280px;
-    }
-
-    .login-input {
-        margin: 10px;
-    }
-
-    .login-input input[type='text'] {
-        border: 1px solid blue;
-    }
-
-    .login-input input {
-        font-size: 20px;
-        padding: 5px;
-    }
-
-    .btn {
-        text-align: center;
-        margin-top: 15px;
-    }
-
-    .btn input[type='reset'],
-    .btn input[type='submit'] {
-        padding: 5px 10px;
-        border: 1px solid green;
-        border-radius: 5px;
-        margin: 5px;
-    }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <?= include_once('header.php')?>
     <div class='login-block'>
         <?php
     // session_start();
