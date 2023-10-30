@@ -1,13 +1,14 @@
 <?php
-// session_start();
+session_start();
+
 if($_POST['acc']=='admin' && $_POST['pw']=='1234'){
-    // $_SESSION['login']=$_POST['acc'];
-    setcookie("login","hanna",time()+300);
+
+    $_SESSION['login']=$_POST['acc'];
+
     header("location:member.php");
 
 }else{
-    setcookie("error","帳號或密碼錯誤,請重新登入",time()+5);
-    // $_SESSION['error']="帳號或密碼錯誤,請重新登入";
+    $_SESSION['error']="帳號或密碼錯誤,請重新登入";
     header("location:login.php");
 }
 ?>
