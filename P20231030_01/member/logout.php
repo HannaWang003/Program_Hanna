@@ -1,5 +1,7 @@
 <?php
-// session_start();
-setcookie("login","hanna",time());
+session_start();
+
+unset($_SESSION['login']);
+
 header("location:login.php");
 ?>
