@@ -21,5 +21,4 @@ if(is_numeric($num)){
     return $sum;
 }
 echo sum2(1,2,3,4,5,"AAA",10);
-
 ?>
