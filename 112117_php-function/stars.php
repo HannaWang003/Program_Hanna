@@ -5,10 +5,12 @@
 }
 </style>
 <?php
-equilateral_triangle(15);
-diamond(30);
-rectangle(20);
-
+stars('正三角形',15);
+stars('正三角形',15);
+stars('正三角形',15);
+// equilateral_triangle(15);
+// diamond(30);
+// rectangle(20);
 ?>
 <!-- function -->
 <!-- <h2>正三角形</h2> -->
@@ -66,5 +68,23 @@ for($i=0;$i<$size;$i++){
     echo "<br>";
 }
 }
+?>
+
+<?php
+// 組合function
+function stars($shape ,$size){
+switch($shape){
+case '正三角形':
+    equilateral_triangle($size);
+    break;
+case '菱形':
+    diamond($size);
+    break;
+case '矩形':
+    rectangle($size);
+    break;
+}
+}
+
 ?>
 <!-- function_end -->
