@@ -12,7 +12,8 @@
 
 // function
 // 1-print_r
-insert('dept',['code'=>'112','name'=>'織品系']);
+// insert('dept',['code'=>'114','name'=>'體育系']);
+del('dept',11);
 
 function dd($array){
     echo "<pre>";
@@ -110,12 +111,29 @@ function insert($table,$values){
     $pdo=new PDO($dns,'root','');
     $sql="insert into `$table` "; 
 
-    $cols=join("`,`",array_keys($values));
-    $vals=join("','",$values);
+    $values="(`".join("`,`",array_keys($values))."`)"." values "."('".join("','",$values)."')";
 
-$sql .= "(`$cols`)" ." values "."('$vals')";
+ $sql .= $values;
 return $pdo->exec($sql);
 }
 
 // 6-del
+function del($table,$id){
+    $dns="mysql:host=localhost;charset=utf8;dbname=school";
+    $pdo=new PDO($dns,'root','');
+    $sql="delete from `$table` where ";
+    if(is_array($id)){
+        foreach($id as $col => $val){
+            $tmp[]="`$col`='$val'";
+        }
+$sql .= join(" && ",$tmp);
+    }else if(is_numeric($id)){
+        $sql .=" `id`='$id'";
+    }
+    else{
+        echo "錯誤:參數錯誤!";
+    }
+
+return $pdo->exec($sql);
+}
 ?>
