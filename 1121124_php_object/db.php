@@ -80,7 +80,7 @@ class DB
         return $row;
     }
 
-    function update($id, $cols)
+    protected function update($id, $cols)
     {
         $sql = "update `$this->table` set ";
 
@@ -104,11 +104,12 @@ class DB
         } else {
             echo "錯誤:參數的資料型態比須是數字或陣列";
         }
+
         // echo $sql;
         return $this->pdo->exec($sql);
     }
 
-    function insert($values)
+    protected function insert($values)
     {
         $sql = "insert into `$this->table` ";
         $cols = "(`" . join("`,`", array_keys($values)) . "`)";
@@ -139,7 +140,18 @@ class DB
 
         return $this->pdo->exec($sql);
     }
+    // 合併insert & update
+    function save($array)
+    {
+        if (isset($array['id'])) {
+            $this->update($array['id'], $array);
+        } else {
+            $this->insert($array);
+        }
+    }
 }
+
+
 function dd($array)
 {
     echo "<pre>";
