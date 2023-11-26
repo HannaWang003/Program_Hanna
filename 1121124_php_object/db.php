@@ -40,32 +40,29 @@ class DB
         }
     }
     // function_1-1 計算全部筆數
-    function count($where = '', $other = '')
-    {
-        $sql = "select count(*) from `$this->table` ";
-
-        if (isset($this->table) && !empty($this->table)) {
-
-            if (is_array($where)) {
-
-                if (!empty($where)) {
-                    foreach ($where as $col => $value) {
-                        $tmp[] = "`$col`='$value'";
-                    }
-                    $sql .= " where " . join(" && ", $tmp);
+    function count($where = '',$other = ''){
+        $sql = "select count(*) from `$this->table`";
+    
+    if(isset($this->table)&& !empty($this->table)){
+        if(is_array($where)){
+            if(!empty($where)){
+                foreach($where as $col => $val){
+                    $tmp[] = "`$col` = '$val'";
                 }
-            } else {
-                $sql .= " $where";
+                $sql .= " where " . join(" && ", $tmp);
             }
-
-            $sql .= $other;
-            //echo 'all=>'.$sql;
-            $rows = $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
-            return $rows;
-        } else {
-            echo "錯誤:沒有指定的資料表名稱";
         }
+        else{
+            $sql .= " $where";
+        }
+        $sql .= $other;
+        $rows = $this->pdo->query($sql)->fetchColumn();
+        return $rows;
     }
+    else{
+        echo "錯誤:沒有指定資料表名稱";
+    }
+        }
     // function_2_回傳資料庫有沒有核對到資料，並回傳筆數
     function total($id)
     {
@@ -143,8 +140,8 @@ class DB
         if (isset($array['id'])) {
             $sql = "update `$this->table` set ";
 
-            if (!empty($cols)) {
-                foreach ($cols as $col => $value) {
+            if (!empty($array)) {
+                foreach ($array as $col => $value) {
                     $tmp[] = "`$col`='$value'";
                 }
             } else {
