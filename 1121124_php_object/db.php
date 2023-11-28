@@ -40,31 +40,28 @@ class DB
         }
     }
     // function_1-1 計算全部筆數
-    function count($where = '',$other = ''){
+    function count($where = '', $other = '')
+    {
         $sql = "select count(*) from `$this->table`";
-    
-    if(isset($this->table)&& !empty($this->table)){
-        if(is_array($where)){
-            if(!empty($where)){
-                foreach($where as $col => $val){
-                    $tmp[] = "`$col` = '$val'";
+
+        if (isset($this->table) && !empty($this->table)) {
+            if (is_array($where)) {
+                if (!empty($where)) {
+                    foreach ($where as $col => $val) {
+                        $tmp[] = "`$col` = '$val'";
+                    }
+                    $sql .= " where " . join(" && ", $tmp);
                 }
-                $sql .= " where " . join(" && ", $tmp);
+            } else {
+                $sql .= " $where";
             }
+            $sql .= $other;
+            $rows = $this->pdo->query($sql)->fetchColumn();
+            return $rows;
+        } else {
+            echo "錯誤:沒有指定資料表名稱";
         }
-        else{
-            $sql .= " $where";
-        }
-        $sql .= $other;
-        $rows = $this->pdo->query($sql)->fetchColumn();
-        return $rows;
     }
-<<<<<<< HEAD
-=======
-    else{
-        echo "錯誤:沒有指定資料表名稱";
-    }
-        }
     // function_2_回傳資料庫有沒有核對到資料，並回傳筆數
     function total($id)
     {
@@ -84,7 +81,6 @@ class DB
         $row = $this->pdo->query($sql)->fetchColumn();
         return $row;
     }
->>>>>>> c897832b761cafc666830faf3e2c973bc1feb302
 
     //function_3_篩選出特定資料
     function find($id)
