@@ -22,7 +22,7 @@ class DB
             if (is_array($where)) {
 
                 if (!empty($where)) {
-                    $this->a2s($where);
+                    $tmp = $this->a2s($where);
                     $sql .= " where " . join(" && ", $tmp);
                 }
             } else {
