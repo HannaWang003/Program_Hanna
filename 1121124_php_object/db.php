@@ -66,25 +66,6 @@ class DB
             echo "錯誤:沒有指定的資料表名稱";
         }
     }
-    // function_2_回傳資料庫有沒有核對到資料，並回傳筆數
-    function total($id)
-    {
-        $sql = "select count(`id`) from `$this->table` ";
-
-        if (is_array($id)) {
-            foreach ($id as $col => $value) {
-                $tmp[] = "`$col`='$value'";
-            }
-            $sql .= " where " . join(" && ", $tmp);
-        } else if (is_numeric($id)) {
-            $sql .= " where `id`='$id'";
-        } else {
-            echo "錯誤:參數的資料型態比須是數字或陣列";
-        }
-        //echo 'find=>'.$sql;
-        $row = $this->pdo->query($sql)->fetchColumn();
-        return $row;
-    }
 
     //function_3_篩選出特定資料
     function find($id)
