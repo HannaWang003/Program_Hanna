@@ -1,5 +1,5 @@
 <?php
-include_once("../inc/pdo.php");
+include_once("../inc/db.php");
 // if(isset($_POST['pwd'])){
 //     $_SESSION['pwd']=$_POST['pwd'];
 // }
@@ -11,13 +11,12 @@ include_once("../inc/pdo.php");
 //     $_SESSION['tel']=$_POST['tel'];
 // }
 // $sql="update `users` set `pwd`='{$_SESSION['pwd']}',`name`='{$_SESSION['name']}',`tel`='{$_SESSION['tel']}' where `id` = '{$_SESSION['id']}'";
-$res=update('users',"{$_POST['id']}",['pwd'=>"{$_POST['pwd']}",'name'=>"{$_POST['name']}",'tel'=>"{$_POST['tel']}"]);
-if($res>0){
-    $_SESSION['msg']="更新成功";
-}
-else{
-    $_SESSION['msg']="資料無異動";
+// $res=update('users',"{$_POST['id']}",['pwd'=>"{$_POST['pwd']}",'name'=>"{$_POST['name']}",'tel'=>"{$_POST['tel']}"]);
+$res = $User->save($_POST);
+if ($res > 0) {
+    $_SESSION['msg'] = "更新成功";
+} else {
+    $_SESSION['msg'] = "資料無異動";
 };
 // exit();
 header("location:../member.php");
-?>

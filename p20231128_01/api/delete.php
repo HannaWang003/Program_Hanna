@@ -1,8 +1,6 @@
 <?php
-include_once("../inc/pdo.php");
+include_once("../inc/db.php");
 // $sql="delete from `users` where `id` = '{$_SESSION['id']}'";
-del('users',$_GET['del']);
-$pdo->exec($sql);
+$User->del($_GET['del']);
 unset($_SESSION['user']);
 header("location:../index.php");
-?>

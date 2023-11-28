@@ -20,36 +20,38 @@ footer {
 </style>
 
 <body>
-    <?php include('./inc/header.php'); ?>
-    <?php
+    <div class="min-vh-100 relative">
+        <?php include('./inc/header.php'); ?>
+        <?php
     if (isset($_GET['error'])) {
         echo "<h2 class='bg-danger'>" . $_GET['error'] . "</h2>";
     }
 
     ?>
-    <div class="d-flex align-items-center min-vh-100 relative vw-100">
-        <div class="container w-50 border border-2 border-info rounded-5 p-5">
-            <h3 class=" container row text-center">會員登入</h3>
-            <form class="container row " action="./api/login.php" method="post">
-                <div class="row w-50 m-auto input-group my-2">
-                    <label class="col-3 input-group-text" for="acc">帳號</label>
-                    <input class="col-3 form-control" type="text" name="acc" id="">
-                </div>
-                <div class="row w-50 m-auto input-group my-2">
-                    <label class="col-3 input-group-text" for="pwd">密碼</label>
-                    <input class="col-3 form-control" type="password" name="pwd" id="">
-                </div>
-                <div class="row  m-auto justify-content-center my-2">
-                    <input class="col-5 mx-1 btn btn-primary" type="submit" value="Login">
-                    <input class="col-5 mx-1 btn btn-light" type="reset" value="Reset">
-                </div>
-            </form>
-            <a class="container row my-5 justify-content-end text-decoration-none" href="./reg.php"><button
-                    class="col-3 btn btn-success text-light">註冊新會員</button></a>
+        <div class="d-flex align-items-center">
+            <div class="container w-50 border border-2 border-info rounded-5 p-5">
+                <h3 class=" container row text-center">會員登入</h3>
+                <form class="container row " action="./api/login.php" method="post">
+                    <div class="row w-50 m-auto input-group my-2">
+                        <label class="col-3 input-group-text" for="acc">帳號</label>
+                        <input class="col-3 form-control" type="text" name="acc" id="">
+                    </div>
+                    <div class="row w-50 m-auto input-group my-2">
+                        <label class="col-3 input-group-text" for="pwd">密碼</label>
+                        <input class="col-3 form-control" type="password" name="pwd" id="">
+                    </div>
+                    <div class="row  m-auto justify-content-center my-2">
+                        <input class="col-5 mx-1 btn btn-primary" type="submit" value="Login">
+                        <input class="col-5 mx-1 btn btn-light" type="reset" value="Reset">
+                    </div>
+                </form>
+                <a class="container row my-5 justify-content-end text-decoration-none" href="./reg.php"><button
+                        class="col-3 btn btn-success text-light">註冊新會員</button></a>
 
+            </div>
         </div>
+        <?php include('./inc/footer.php'); ?>
     </div>
-    <?php include('./inc/footer.php'); ?>
 </body>
 
 </html>
