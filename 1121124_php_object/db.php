@@ -16,48 +16,40 @@ class DB
     function all($where = '', $other = '')
     {
         $sql = "select * from `$this->table` ";
-
-        if (isset($this->table) && !empty($this->table)) {
-
-            if (is_array($where)) {
-
-                if (!empty($where)) {
-                    $tmp = $this->a2s($where);
-                    $sql .= " where " . join(" && ", $tmp);
-                }
-            } else {
-                $sql .= " $where";
-            }
-
-            $sql .= $other;
-            //echo 'all=>'.$sql;
-            $rows = $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
-            return $rows;
-        } else {
-            echo "錯誤:沒有指定的資料表名稱";
-        }
+        $sql = $this->sql_all($sql, $where, $other);
+        return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
-    // function_1-1 計算全部筆數
-    function count($where = '', $other = '')
+
+    // 聚合函式_math
+    function math($math, $col, $where = '', $other = '')
     {
-        $sql = "select count(*) from `$this->table`";
-
-        if (isset($this->table) && !empty($this->table)) {
-            if (is_array($where)) {
-                if (!empty($where)) {
-                    $tmp = $this->a2s($where);
-                    $sql .= " where " . join(" && ", $tmp);
-                }
-            } else {
-                $sql .= " $where";
-            }
-            $sql .= $other;
-            $rows = $this->pdo->query($sql)->fetchColumn();
-            return $rows;
-        } else {
-            echo "錯誤:沒有指定資料表名稱";
+        switch ($math) {
+            case 'sum':
+                $sql = "select sum(`$col`) from `$this->table`";
+                break;
+            case 'count':
+                $sql = "select count($col) from `$this->table`";
+                break;
         }
+        $sql = $this->sql_all($sql, $where, $other);
+        return $this->pdo->query($sql)->fetchColumn();
     }
+    // function_1-1 計算全部筆數 組合到function_math
+    function count($col = '*', $where = '', $other = '')
+    {
+        $sql = "select count($col) from `$this->table`";
+        $sql = $this->sql_all($sql, $where, $other);
+        return $this->pdo->query($sql)->fetchColumn();
+    }
+
+    // function_1-2-1 組合到function_math
+    function sum($col = '*', $where = '', $other = '')
+    {
+        $sql = "select sum(`$col`) from `$this->table`";
+        $sql = $this->sql_all($sql, $where, $other);
+        return $this->pdo->query($sql)->fetchColumn();
+    }
+
     // function_2_回傳資料庫有沒有核對到資料，並回傳筆數
     function total($id)
     {
@@ -180,6 +172,24 @@ class DB
         }
         return $tmp;
     }
+    private function sql_all($sql, $array, $other)
+    {
+        if (isset($this->table) && !empty($this->table)) {
+            if (is_array($array)) {
+                if (!empty($array)) {
+                    $tmp = $this->a2s($array);
+                    $sql .= " where " . join(" && ", $tmp);
+                }
+            } else {
+                $sql .= " $array";
+            }
+            $sql .= $other;
+            // $rows = $this->pdo->query($sql)->fetchColumn();
+            return $sql;
+        } else {
+            echo "錯誤:沒有指定資料表名稱";
+        }
+    }
 }
 
 function dd($array)
@@ -188,6 +198,12 @@ function dd($array)
     print_r($array);
     echo "</pre>";
 }
+
+
+// test
 $dept = new DB('dept');
-$rows = $dept->find('5');
+$rows = $dept->count();
 dd($rows);
+$score = new DB('student_scores');
+$sum = $score->math('count', 'score');
+dd($sum);
